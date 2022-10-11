@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/color_constants.dart';
-import 'package:zoho_clone/features/zoho_clone/presentation/pages/checkin_checkout.dart';
-import 'package:zoho_clone/features/zoho_clone/presentation/pages/history.dart';
+import 'package:zoho_clone/features/zoho_clone/presentation/pages/check_in_check_out/checkin_checkout.dart';
+import 'package:zoho_clone/features/zoho_clone/presentation/pages/history/history.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BottomNav extends StatefulWidget {
   BottomNav({
@@ -12,7 +13,7 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
-  int currentIndex = 1;
+  int currentIndex = 0;
   final tabs = [
     CheckInCheckOut(),
     History(),

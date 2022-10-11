@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "928238648960",
+    "project_id": "zohoclone-2c0df",
+    "storage_bucket": "zohoclone-2c0df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928238648960:android:ec95466f56661957f3f065",
+        "android_client_info": {
+          "package_name": "com.example.zoho_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928238648960-belod2ejkv4cdshslno7k164o106kp6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHawrAJrOjht1aoXQqRMM5p-9JFawuOzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928238648960-belod2ejkv4cdshslno7k164o106kp6q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "928238648960-akm5bj2rq88cg53iprqd2fhmtos7m1ld.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.zohoClone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

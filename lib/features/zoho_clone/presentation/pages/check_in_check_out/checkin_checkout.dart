@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/color_constants.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/text_constants.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/textstyle_constants.dart';
-import 'package:zoho_clone/features/zoho_clone/presentation/widgets/timer_display.dart';
+import 'package:zoho_clone/features/zoho_clone/presentation/pages/check_in_check_out/widgets/timer_display.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CheckInCheckOut extends StatelessWidget {
   const CheckInCheckOut({Key? key}) : super(key: key);
@@ -120,7 +121,15 @@ class CheckInCheckOut extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    print(
+                      FirebaseFirestore.instance
+                          .collection('checkInCheckOutTimings')
+                          .doc()
+                          .collection("checkInTimings")
+                          .get(),
+                    );
+                  },
                   child: const Text(
                     "Check-In",
                     style: kCheckInTextStyle,
