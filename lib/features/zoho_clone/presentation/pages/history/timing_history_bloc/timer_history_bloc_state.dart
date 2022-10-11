@@ -1,6 +1,10 @@
 part of 'timer_history_bloc_bloc.dart';
 
 @immutable
-abstract class TimerHistoryBlocState {}
+abstract class TimerHistoryState {}
 
-class TimerHistoryBlocInitial extends TimerHistoryBlocState {}
+class TimerHistoryInitial extends TimerHistoryState {}
+
+class TimerHistoryLoadedState extends TimerHistoryState{}
+
+class TimerErrorState extends TimerHistoryState{}

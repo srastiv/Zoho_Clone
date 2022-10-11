@@ -7,4 +7,4 @@ const kHourTextStyle =
     TextStyle(color: kLightestGrey, fontSize: 20, fontWeight: FontWeight.w500);
 const kGeneralTextStyle =
     TextStyle(color: kLightestGrey, fontWeight: FontWeight.w500);
-const kCheckInTextStyle = TextStyle(fontWeight: FontWeight.bold);
+const kCheckInTextStyle = TextStyle(fontWeight: FontWeight.bold, color: kWhite);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zoho_clone/features/zoho_clone/data/models/zoho_model.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/color_constants.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/text_constants.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/textstyle_constants.dart';
@@ -6,7 +7,21 @@ import 'package:zoho_clone/features/zoho_clone/presentation/pages/check_in_check
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CheckInCheckOut extends StatelessWidget {
-  const CheckInCheckOut({Key? key}) : super(key: key);
+  CheckInCheckOut({Key? key}) : super(key: key);
+
+  CollectionReference time = FirebaseFirestore.instance.collection('checkIn');
+  Future<void> addUser() {
+    return time
+        .add(
+          {
+            "checkIn": "October 22, 2022 at 12:45:30",
+          },
+        )
+        .then((value) => print("time added"))
+        .catchError(
+          (error) => print("Failed to add user: $error"),
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,14 +136,16 @@ class CheckInCheckOut extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  onPressed: () {
-                    print(
-                      FirebaseFirestore.instance
-                          .collection('checkInCheckOutTimings')
-                          .doc()
-                          .collection("checkInTimings")
-                          .get(),
-                    );
+                  onPressed: () async {
+                    // ZohoRemoteDataSourceImpl(client: client);
+                    addUser();
+                    QuerySnapshot<Map<String, dynamic>> data =
+                        await FirebaseFirestore.instance
+                            .collection('checkIn')
+                            .get();
+                    var d = ZohoModel.fromJson(data as Map<String, dynamic>);
+                    print(" the d time is ${  d.time}");
+                    print("firestore data: ${data.docs}");
                   },
                   child: const Text(
                     "Check-In",

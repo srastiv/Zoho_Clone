@@ -4,17 +4,20 @@
 // import 'package:zoho_clone/features/zoho_clone/domain/entities/zoho.dart';
 // import 'package:zoho_clone/features/zoho_clone/domain/repositories/zoho_repository.dart';
 
+// typedef _getTheTime = Future<Zoho> Function();
+
 // class ZohoRepositoryImpl implements ZohoRepository {
 //   final ZohoRemoteDataSource remoteDataSource;
 //   ZohoRepositoryImpl({required this.remoteDataSource});
 
 //   @override
 //   Future<Either<Failure, Zoho>> getCheckInCheckOutTime(DateTime time) async {
-//     return await getTime(()=>remoteDataSource.getCheckInCheckOutTime(time));
+//     return await _getTime(
+//       () => remoteDataSource.getCheckInCheckOutTime(time),
+//     );
 //   }
 
-//   Future<Either<Failure, Zoho>> getTime(
-//      Future<Zoho> getTime) async {
-   
+//   Future<Either<Failure, Zoho>> _getTime(_getTheTime getTime) async {
+//     try{final getTime = await getCheckInCheckOutTime(getTime); }
 //   }
 // }

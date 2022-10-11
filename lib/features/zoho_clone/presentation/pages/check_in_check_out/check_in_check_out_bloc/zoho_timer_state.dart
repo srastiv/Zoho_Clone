@@ -3,4 +3,11 @@ part of 'zoho_timer_bloc.dart';
 @immutable
 abstract class ZohoTimerState {}
 
-class ZohoTimerInitial extends ZohoTimerState {}
+class ZohoTimerInitialState extends ZohoTimerState {}
+
+class ZohoTimerActiveState extends ZohoTimerState{}
+
+class ZohoTimerInactiveState extends ZohoTimerState{}
+
+class ZohoTimerErrorState extends ZohoTimerState{}
+

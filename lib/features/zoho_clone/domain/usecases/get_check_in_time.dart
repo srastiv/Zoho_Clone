@@ -12,7 +12,7 @@ class GetCheckInCheckOutTime implements Usecase<Zoho, Params> {
 
   @override
   Future<Either<Failure, Zoho>> call(Params params) async {
-    return await repository.getCheckInCheckOutTime(params.time);
+    return await repository.getCheckInTime(params.time);
   }
 }
 

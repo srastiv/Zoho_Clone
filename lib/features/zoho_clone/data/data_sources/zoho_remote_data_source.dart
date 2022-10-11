@@ -6,18 +6,25 @@ import 'package:zoho_clone/features/zoho_clone/data/models/zoho_model.dart';
 import 'package:zoho_clone/features/zoho_clone/domain/entities/zoho.dart';
 
 abstract class ZohoRemoteDataSource {
-  Future<Zoho> getCheckInCheckOutTime(DateTime time);
+  Future<Zoho> getCheckInTime(DateTime time);
+  Future<Zoho> getCheckOutTime(DateTime time);
+  Future<Zoho> postCheckInTime(DateTime time);
+  Future<Zoho> postCheckOutTime(DateTime time);
 }
 
 class ZohoRemoteDataSourceImpl implements ZohoRemoteDataSource {
   final http.Client client;
   ZohoRemoteDataSourceImpl({required this.client});
 
-  @override
-  Future<ZohoModel> getCheckInCheckOutTime(DateTime time) => _getCheckInCheckOutFromURL("ff");
-  
-//get
+//WEB API KEY :  AIzaSyCHawrAJrOjht1aoXQqRMM5p-9JFawuOzE
 
+  @override
+  Future<ZohoModel> getCheckInTime(DateTime time) => _getCheckInCheckOutFromURL(
+      "https://zohoclone-2c0df-default-rtdb.firebaseio.com/checkInTime.json");
+  Future<ZohoModel> getCheckOutTime(DateTime time) => _getCheckInCheckOutFromURL(
+      "https://zohoclone-2c0df-default-rtdb.firebaseio.com/checkOutTime.json");
+
+//get
   Future<ZohoModel> _getCheckInCheckOutFromURL(String url) async {
     final response = await client.get(Uri.parse(url), headers: {
       'Content-Type': 'application/json',
@@ -28,5 +35,37 @@ class ZohoRemoteDataSourceImpl implements ZohoRemoteDataSource {
       throw ServerExceptions();
     }
   }
-  //TODO: post
+
+  @override
+  Future<Zoho> postCheckInTime(DateTime time) {
+    http.post(
+      Uri.parse(
+          "https://zohoclone-2c0df-default-rtdb.firebaseio.com/checkInTime.json"),
+      body: jsonEncode(
+        {
+          "checkInTime": DateTime.now(),
+          "checkOutTime": DateTime.now(),
+        },
+      ),
+      headers: <String, String>{'Content-Type': 'application/json'},
+    );
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Zoho> postCheckOutTime(DateTime time) {
+    http.post(
+      Uri.parse(
+          "https://zohoclone-2c0df-default-rtdb.firebaseio.com/checkOutTime.json"),
+      body: jsonEncode(
+        {
+          "checkInTime": DateTime.now(),
+          "checkOutTime": DateTime.now(),
+        },
+      ),
+      headers: <String, String>{'Content-Type': 'application/json'},
+    );
+
+    throw UnimplementedError();
+  }
 }
