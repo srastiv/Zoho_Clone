@@ -1,6 +1,6 @@
 import 'dart:async';
 
-class time{
+class Time{
 
   Timer? _timer;
   int _hour = 0;
@@ -10,7 +10,7 @@ class time{
   bool _isStopped = false;
 
 
-  void handelStopWatch() {
+  void handleStopWatch() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_seconds < 59) {
         _seconds++;
@@ -29,7 +29,7 @@ class time{
   void startTimer() {
     _isStarted = true;
     _isStopped = false;
-    handelStopWatch();
+    handleStopWatch();
   }
 
   void stopTimer() {
@@ -43,6 +43,6 @@ class time{
   void continueTimer() {
     _isStopped = false;
     _isStarted = true;
-    handelStopWatch();
+    handleStopWatch();
   }
 }

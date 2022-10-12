@@ -7,7 +7,7 @@ class ZohoModel extends Zoho {
 
   factory ZohoModel.fromJson(Map<String, dynamic> json) {
     return ZohoModel(
-      time: json['time'],
+      time: json['time' as DateTime],
     );
   }
 

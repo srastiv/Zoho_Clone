@@ -1,9 +1,6 @@
-import 'package:equatable/equatable.dart';
-
-class Zoho extends Equatable {
-  
+class Zoho {
   final DateTime time;
   Zoho({required this.time});
-  List<Object> get props => [time];
-  
+  //List<Object> get props => [time];
+
 }
