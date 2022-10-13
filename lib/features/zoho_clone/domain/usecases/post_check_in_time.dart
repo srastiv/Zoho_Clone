@@ -8,7 +8,7 @@ class PostCheckInTimeUsecase {
 
   PostCheckInTimeUsecase(this.repository);
 
-  Future<Either<Failure, Zoho>> execute(DateTime time) async {
+  Future<Either<Failure, ZohoEntity>> execute(DateTime time) async {
     return await repository.postCheckInTime(time);
   }
 }

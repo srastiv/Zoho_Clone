@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 import 'package:zoho_clone/features/zoho_clone/data/data_sources/zoho_remote_data_source.dart';
 import 'package:zoho_clone/features/zoho_clone/data/repositories/zoho_repository_impl.dart';
 import 'package:zoho_clone/features/zoho_clone/domain/repositories/zoho_repository.dart';
@@ -36,7 +37,21 @@ Future<void> init()async {
   sl.registerLazySingleton<ZohoRemoteDataSource>(
       () => ZohoRemoteDataSourceImpl(client: sl()));
 
+  sl.registerLazySingleton<http.Client>(() => http.Client());
+
   //* Core
 
   //* External
 }
+
+
+
+
+
+
+//GetIt is a service locator that allows you to create 
+//interfaces and their implementations, and access those 
+//implementations globally, anywhere in your app. Injectable 
+//generates code that we would have otherwise written by using 
+//annotations. This allows us to worry more about logic and 
+//less about how we are going to access it.

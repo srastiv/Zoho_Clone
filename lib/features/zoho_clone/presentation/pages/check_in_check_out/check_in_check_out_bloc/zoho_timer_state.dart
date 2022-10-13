@@ -5,9 +5,7 @@ abstract class ZohoTimerState {}
 
 class ZohoTimerInitialState extends ZohoTimerState {}
 
-class ZohoTimerActiveState extends ZohoTimerState {}
-
-class ZohoTimerInactiveState extends ZohoTimerState {}
+class ZohoTimerLoadedState extends ZohoTimerState {}
 
 class ZohoTimerErrorState extends ZohoTimerState {
   String message;

@@ -1,48 +1,94 @@
 import 'dart:async';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Time{
 
-  Timer? _timer;
-  int _hour = 0;
-  int _minute = 0;
-  int _seconds = 0;
-  bool _isStarted = false;
-  bool _isStopped = false;
+  Timer? timer;
+  int hour = 0;
+  int minute = 0;
+  int seconds = 0;
+  bool isStarted = false;
+  bool isStopped = false;
 
 
-  void handleStopWatch() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_seconds < 59) {
-        _seconds++;
-      } else if (_seconds == 59) {
-        _seconds = 0;
-        if (_minute == 59) {
-          _minute = 0;
-          _hour++;
+  void stopWatch() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (seconds < 59) {
+        seconds++;
+      } else if (seconds == 59) {
+        seconds = 0;
+        if (minute == 59) {
+          minute = 0;
+          hour++;
         } else {
-          _minute++;
+          minute++;
         }
       }
     });
   }
 
   void startTimer() {
-    _isStarted = true;
-    _isStopped = false;
-    handleStopWatch();
+    isStarted = true;
+    isStopped = false;
+    stopWatch();
   }
 
   void stopTimer() {
-    if (_isStarted == true) {
-      _isStarted = false;
-      _isStopped = true;
-      _timer!.cancel();
+    if (isStarted == true) {
+      isStarted = false;
+      isStopped = true;
+      timer!.cancel();
     }
   }
 
   void continueTimer() {
-    _isStopped = false;
-    _isStarted = true;
-    handleStopWatch();
+    isStopped = false;
+    isStarted = true;
+    stopWatch();
   }
 }

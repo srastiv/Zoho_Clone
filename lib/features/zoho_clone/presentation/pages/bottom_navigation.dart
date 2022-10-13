@@ -5,9 +5,7 @@ import 'package:zoho_clone/features/zoho_clone/presentation/pages/history/histor
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BottomNav extends StatefulWidget {
-  BottomNav({
-    Key? key,
-  }) : super(key: key);
+  BottomNav({Key? key, }) : super(key: key);
   @override
   State<BottomNav> createState() => _BottomNavState();
 }

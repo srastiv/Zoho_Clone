@@ -1,10 +1,18 @@
-part of 'timer_history_bloc_bloc.dart';
+part of 'timer_history_bloc.dart';
 
 @immutable
 abstract class TimerHistoryState {}
 
 class TimerHistoryInitial extends TimerHistoryState {}
 
-class TimerHistoryLoadedState extends TimerHistoryState{}
+class TimerHistoryLoadedState extends TimerHistoryState {
+  List<ZohoModel> checkInList;
+  List<ZohoModelOUT> checkOutList;
 
-class TimerErrorState extends TimerHistoryState{}
+  TimerHistoryLoadedState({
+    required this.checkInList,
+    required this.checkOutList,
+  });
+}
+
+class TimerErrorState extends TimerHistoryState {}

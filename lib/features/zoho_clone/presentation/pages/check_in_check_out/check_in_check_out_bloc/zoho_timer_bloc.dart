@@ -25,7 +25,7 @@ class ZohoTimerBloc extends Bloc<ZohoTimerEvent, ZohoTimerState> {
       await getCheckInTimeUsecase.repository.getCheckInTime();
       await getCheckOutTimeUsecase.repository.getCheckOutTime();
 
-      emit(ZohoTimerActiveState());
+      emit(ZohoTimerLoadedState());
     });
 
     on<CheckOutEvent>((event, emit) async {
@@ -33,7 +33,7 @@ class ZohoTimerBloc extends Bloc<ZohoTimerEvent, ZohoTimerState> {
       await getCheckInTimeUsecase.repository.getCheckInTime();
       await getCheckOutTimeUsecase.repository.getCheckOutTime();
 
-      emit(ZohoTimerInactiveState());
+      emit(ZohoTimerLoadedState());
     });
   }
 }

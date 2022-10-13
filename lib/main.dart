@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/pages/bottom_navigation.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/pages/check_in_check_out/check_in_check_out_bloc/zoho_timer_bloc.dart';
-import 'package:zoho_clone/features/zoho_clone/presentation/pages/history/timing_history_bloc/timer_history_bloc_bloc.dart';
+import 'package:zoho_clone/features/zoho_clone/presentation/pages/history/timing_history_bloc/timer_history_bloc.dart';
 import 'package:zoho_clone/firebase_options.dart';
 import 'dependency_injection.dart' as di;
 
@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        
          BlocProvider<ZohoTimerBloc>(
           create: (context)=> GetIt.instance<ZohoTimerBloc>(),
         ),

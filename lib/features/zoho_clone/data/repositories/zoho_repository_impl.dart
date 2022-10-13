@@ -5,14 +5,14 @@ import 'package:zoho_clone/features/zoho_clone/data/data_sources/zoho_remote_dat
 import 'package:zoho_clone/features/zoho_clone/domain/entities/zoho.dart';
 import 'package:zoho_clone/features/zoho_clone/domain/repositories/zoho_repository.dart';
 
-typedef _getTheTime = Future<Zoho> Function();
+//typedef _getTheTime = Future<Zoho> Function();
 
 class ZohoRepositoryImpl implements ZohoRepository {
   final ZohoRemoteDataSource remoteDataSource;
   ZohoRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, Zoho>> getCheckInTime() async {
+  Future<Either<Failure, ZohoEntity>> getCheckInTime() async {
     try {
       final getCheckInTime = await remoteDataSource.getCheckInTime();
       return Right(getCheckInTime);
@@ -22,7 +22,7 @@ class ZohoRepositoryImpl implements ZohoRepository {
   }
 
   @override
-  Future<Either<Failure, Zoho>> getCheckOutTime() async {
+  Future<Either<Failure, ZohoEntity>> getCheckOutTime() async {
     try {
       final getCheckOutTime = await remoteDataSource.getCheckOutTime();
       return Right(getCheckOutTime);
@@ -32,7 +32,7 @@ class ZohoRepositoryImpl implements ZohoRepository {
   }
 
   @override
-  Future<Either<Failure, Zoho>> postCheckInTime(DateTime time) async {
+  Future<Either<Failure, ZohoEntity>> postCheckInTime(DateTime time) async {
     try {
       final postCheckInTime = await remoteDataSource.postCheckInTime(time);
       return Right(postCheckInTime);
@@ -42,7 +42,7 @@ class ZohoRepositoryImpl implements ZohoRepository {
   }
 
   @override
-  Future<Either<Failure, Zoho>> postCheckOutTime(DateTime time) async {
+  Future<Either<Failure, ZohoEntity>> postCheckOutTime(DateTime time) async {
     try {
       final postCheckOutTime = await remoteDataSource.postCheckOutTime(time);
       return Right(postCheckOutTime);
