@@ -3,9 +3,8 @@ import 'package:zoho_clone/features/zoho_clone/presentation/constants/color_cons
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/textstyle_constants.dart';
 
 class TimerDisplay extends StatelessWidget {
-  int hourMinSec = 0;
-  TimerDisplay({Key? key, required int hourMinSec}) : super(key: key);
-
+  TimerDisplay({Key? key, required this.hourMinSec}) : super(key: key);
+  int? hourMinSec;
   @override
   Widget build(BuildContext context) {
     return Container(

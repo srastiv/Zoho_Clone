@@ -1,60 +1,14 @@
 import 'dart:async';
 
+enum TimeProperties { hour, minute, second }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class Time{
-
+class Time {
   Timer? timer;
-  int hour = 0;
-  int minute = 0;
-  int seconds = 0;
+  int hour = 1;
+  int minute = 24;
+  int seconds = 20;
   bool isStarted = false;
-  bool isStopped = false;
-
+  bool isPaused = false;
 
   void stopWatch() {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -74,20 +28,20 @@ class Time{
 
   void startTimer() {
     isStarted = true;
-    isStopped = false;
+    isPaused = false;
     stopWatch();
   }
 
   void stopTimer() {
     if (isStarted == true) {
       isStarted = false;
-      isStopped = true;
+      isPaused = true;
       timer!.cancel();
     }
   }
 
   void continueTimer() {
-    isStopped = false;
+    isPaused = false;
     isStarted = true;
     stopWatch();
   }

@@ -14,5 +14,4 @@ class TimerHistoryLoadedState extends TimerHistoryState {
     required this.checkOutList,
   });
 }
-
 class TimerErrorState extends TimerHistoryState {}

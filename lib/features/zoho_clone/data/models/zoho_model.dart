@@ -1,7 +1,7 @@
 
 import 'package:meta/meta.dart';
 import 'dart:convert';
-import 'package:zoho_clone/features/zoho_clone/domain/entities/zoho.dart';
+import 'package:zoho_clone/features/zoho_clone/domain/entities/zoho_entity.dart';
 
 class ZohoModel extends ZohoEntity {
   ZohoModel({

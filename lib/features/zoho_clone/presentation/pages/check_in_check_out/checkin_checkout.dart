@@ -1,29 +1,74 @@
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zoho_clone/dependency_injection.dart';
-import 'package:zoho_clone/features/zoho_clone/domain/entities/zoho.dart';
+import 'package:zoho_clone/features/zoho_clone/domain/entities/zoho_entity.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/color_constants.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/text_constants.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/constants/textstyle_constants.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/pages/check_in_check_out/check_in_check_out_bloc/zoho_timer_bloc.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/pages/check_in_check_out/widgets/timer_display.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:zoho_clone/features/zoho_clone/presentation/pages/history/timing_history_bloc/timer_history_bloc.dart';
+import 'package:zoho_clone/timer.dart';
 
-class CheckInCheckOut extends StatelessWidget {
-  Future postDateTime({required String time}) async {
-    CollectionReference docTime =
-        FirebaseFirestore.instance.collection('checkIn');
+class CheckInCheckOut extends StatefulWidget {
+  CheckInCheckOut({Key? key}) : super(key: key);
 
-    final zohotime = ZohoEntity(time: DateTime.now().toString());
+  @override
+  State<CheckInCheckOut> createState() => _CheckInCheckOutState();
+}
 
-    final json = {
-      "checkIn": time,
-    };
-    await docTime.add(json);
+class _CheckInCheckOutState extends State<CheckInCheckOut> {
+
+
+  // Future postDateTime({required String time}) async {
+  //   CollectionReference docTime =
+  //       FirebaseFirestore.instance.collection('checkIn');
+
+  //   final zohotime = ZohoEntity(time: DateTime.now().toString());
+
+  //   final json = {
+  //     "checkIn": time,
+  //   };
+  //   await docTime.add(json);
+  // }
+
+
+
+
+
+  Timer? _timer;
+  int _start = 60;
+
+  startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
   }
 
-  CheckInCheckOut({Key? key}) : super(key: key);
+  void stopTimer() {
+    setState(() => _timer!.cancel());
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,6 +114,7 @@ class CheckInCheckOut extends StatelessWidget {
   }
 
   BlocProvider<ZohoTimerBloc> buildBody(BuildContext context) {
+    bool isPressed = false;
     return BlocProvider(
       create: (_) => sl<ZohoTimerBloc>(),
       child: Padding(
@@ -90,8 +136,17 @@ class CheckInCheckOut extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        TimerDisplay(hourMinSec: Time().hour
+                            //   hourMinSec: 0,
+                            ),
+                        const SizedBox(
+                          child: Text(
+                            " : ",
+                            style: TextStyle(color: kWhite, fontSize: 20),
+                          ),
+                        ),
                         TimerDisplay(
-                          hourMinSec: 02,
+                          hourMinSec: Time().minute,
                         ),
                         const SizedBox(
                           child: Text(
@@ -100,16 +155,7 @@ class CheckInCheckOut extends StatelessWidget {
                           ),
                         ),
                         TimerDisplay(
-                          hourMinSec: 02,
-                        ),
-                        const SizedBox(
-                          child: Text(
-                            " : ",
-                            style: TextStyle(color: kWhite, fontSize: 20),
-                          ),
-                        ),
-                        TimerDisplay(
-                          hourMinSec: 02,
+                          hourMinSec: _start,
                         ),
                       ],
                     ),
@@ -142,16 +188,26 @@ class CheckInCheckOut extends StatelessWidget {
                       height: 40,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: kRed,
+                          primary: isPressed == false ? kRed : kGreen,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
                         onPressed: () async {
-                          postDateTime(time: DateTime.now().toString());
+                          setState(() {
+                            // Time().stopWatch;
+                            // Time().startTimer;
+                          });
+                          startTimer;
+
+                        //     postDateTime(time: DateTime.now().toString());
+
+                          BlocProvider.of<ZohoTimerBloc>(context).add(
+                              CheckInEvent(time: DateTime.now().toString()));
+                          isPressed = !isPressed;
                         },
-                        child: const Text(
-                          "Check-In",
+                        child: Text(
+                          isPressed == false ? "Check-In" : "Check-Out",
                           style: kCheckInTextStyle,
                         ),
                       ),

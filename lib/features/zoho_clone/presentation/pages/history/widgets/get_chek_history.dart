@@ -8,7 +8,7 @@ Future<List<ZohoModel>> getCheckInHistory() async {
   var ans = response.docs.map((e) => ZohoModel.fromJson(e.data())).toList();
   ans.forEach((doc) {
     times.add(doc);
-  });
+  }); 
   return times;
 }
 

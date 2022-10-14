@@ -21,3 +21,4 @@ class TimerHistoryBloc extends Bloc<TimerHistoryEvent, TimerHistoryState> {
     });
   }
 }
+

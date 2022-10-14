@@ -1,13 +1,13 @@
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:zoho_clone/features/zoho_clone/data/models/zoho_model.dart';
-import 'package:zoho_clone/features/zoho_clone/domain/entities/zoho.dart';
+import 'package:zoho_clone/features/zoho_clone/domain/entities/zoho_entity.dart';
 
 abstract class ZohoRemoteDataSource {
   Future<ZohoEntity> getCheckInTime();
   Future<ZohoEntity> getCheckOutTime();
-  postCheckInTime(DateTime time);
-  postCheckOutTime(DateTime time);
+  postCheckInTime(String time);
+  postCheckOutTime(String time);
 }
 
 class ZohoRemoteDataSourceImpl implements ZohoRemoteDataSource {
@@ -56,14 +56,14 @@ class ZohoRemoteDataSourceImpl implements ZohoRemoteDataSource {
 //* POST POST POST
 
   @override
-  Future<ZohoEntity> postCheckInTime(DateTime time) =>
-      postCheckInTimee("checkIn", time) as Future<ZohoEntity>;
+  Future postCheckInTime(String time) =>
+      postCheckInTimee("checkIn", time);
 
   @override
-  Future<ZohoEntity> postCheckOutTime(DateTime time) =>
-      postCheckInTimee("checkOut", time) as Future<ZohoEntity>;
+  Future postCheckOutTime(String time) =>
+      postCheckInTimee("checkOut", time);
 
-  Future postCheckInTimee(String collectionName, DateTime time) async {
+  Future postCheckInTimee(String collectionName, String time) async {
     CollectionReference docTime =
         FirebaseFirestore.instance.collection(collectionName);
 
@@ -74,6 +74,18 @@ class ZohoRemoteDataSourceImpl implements ZohoRemoteDataSource {
     };
     await docTime.add(json);
   }
+
+//   Future postDateTime({required String time}) async {
+//   CollectionReference docTime =
+//       FirebaseFirestore.instance.collection('checkIn');
+
+//   final zohotime = ZohoEntity(time: DateTime.now().toString());
+
+//   final json = {
+//     "checkIn": time,
+//   };
+//   await docTime.add(json);
+// }
 
   // Future<ZohoModel> _postCheckInCheckOutFromURL(String url) async {
   //   await http.post(
@@ -166,4 +178,30 @@ class ZohoRemoteDataSourceImpl implements ZohoRemoteDataSource {
 //   );
 
 //   throw UnimplementedError();
+// }
+
+//* WORKING GET CHECK IN OUT DATA
+
+// Future<List<ZohoModel>> getCheckInHistory() async {
+//   var response = await FirebaseFirestore.instance.collection("checkIn").get();
+//   List<ZohoModel> times = [];
+//   var ans = response.docs.map((e) => ZohoModel.fromJson(e.data())).toList();
+//   ans.forEach((doc) {
+//     times.add(doc);
+//   });
+//   return times;
+// }
+
+//* WORKING POST CHECK IN CHECK OUT DATA
+
+// Future postDateTime({required String time}) async {
+//   CollectionReference docTime =
+//       FirebaseFirestore.instance.collection('checkIn');
+
+//   final zohotime = ZohoEntity(time: DateTime.now().toString());
+
+//   final json = {
+//     "checkIn": time,
+//   };
+//   await docTime.add(json);
 // }

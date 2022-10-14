@@ -4,15 +4,16 @@ part of 'zoho_timer_bloc.dart';
 abstract class ZohoTimerEvent {}
 
 class CheckInEvent extends ZohoTimerEvent {
-  DateTime time;
+  String time;
 
   CheckInEvent({
     required this.time,
   });
 }
 
+
 class CheckOutEvent extends ZohoTimerEvent {
-  DateTime time;
+  String time;
   //  Time timer;
   CheckOutEvent({
     required this.time,
